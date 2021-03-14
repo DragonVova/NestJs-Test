@@ -29,12 +29,12 @@ export class CreateUserDto {
   //Description
   @IsOptional()
   @IsString()
-  @ApiProperty({type: String})
+  @ApiPropertyOptional({type: String})
   public description?: string;
 }
 
   //Personal ID
 export class CreateUserResponce extends CreateUserDto {
-  @ApiProperty({type: Number})
+  @ApiProperty({ type: Number })
   public id: number;
 }
