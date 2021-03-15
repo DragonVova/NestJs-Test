@@ -1,38 +1,39 @@
-//import { omit } from 'lodash';
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { omit } from 'lodash';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { CreateUserResponse } from '../../modules/user/dto/createUser.dto';
 
-
-@Entity()
+@Entity('user')
 export class UserEntity {
-
   //Id
   @PrimaryGeneratedColumn()
-  public id: string
+  public id: number;
 
   //Title
-  @Column({ name: 'Title', type: 'varchar', nullable: false })
+  @Column({ name: 'title', type: 'varchar', nullable: false })
   public title: string;
 
   //Age
-  @Column({ name: 'Column', type: 'int', nullable: false })
+  @Column({ name: 'age', type: 'int', nullable: false })
   public age: number;
 
   //Height
-  @Column({ name: 'Height', type: 'int', nullable: true })
+  @Column({ name: 'height', type: 'int', nullable: true })
   public height: number;
 
   //Description
-  @Column({ name: 'Description', type: 'text', nullable: true})
+  @Column({ name: 'description', type: 'text', nullable: true })
   public description: string;
 
   //Creating columns
   @CreateDateColumn({ name: 'created_at' })
   public createdAt: Date;
 
-  //Omit ERROR!
-  /*public toResponceObj(): CreateUserResponce {
+  public toResponseObj(): CreateUserResponse {
     return omit(this, ['createdAt']);
-  }*/
-
-
+  }
 }
