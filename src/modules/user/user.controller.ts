@@ -22,8 +22,8 @@ export class UserController {
 
 
   @Get(':id')
-  getOneID(@Param('id') id: string): string {
-    return 'getOne ' + id;
+  getOne(@Param('id') id: string): Promise<CreateUserResponse> {
+    return this.userService.getOne(Number(id));
   }
 
   @Post('create')
@@ -32,16 +32,19 @@ export class UserController {
     return this.userService.createUser(data);
   }
 
+  @Delete(':id/delete')
+  async delete(@Param('id') id): Promise<any> {
+    return this.userService.delete(id);
+  }
+
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return 'Remove ' + id;
   }
 
-  @Put(':id')
-  update(
-    @Body() updateUserDto: UpdateUserDto,
-    @Param('id') id: string,
-  ): string {
-    return 'Update ' + id;
+  @Put('update')
+  update(@Body() updateUserData: UpdateUserDto): Promise<UpdateUserDto> {
+    return this.userService.update(updateUserData);
   }
 }

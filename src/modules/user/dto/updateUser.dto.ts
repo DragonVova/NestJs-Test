@@ -4,9 +4,15 @@ import {
   IsString,
   IsNumber
 } from "class-validator";
-import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateUserDto {
+  //Personal ID
+  @IsNotEmpty()
+  @IsNumber()
+  @ApiProperty({type: Number})
+  public id: number;
+
   //Title
   @IsNotEmpty()
   @IsString()
@@ -21,19 +27,13 @@ export class UpdateUserDto {
 
   //Height
   @IsOptional()
-  @IsString()
-  @ApiProperty({type: String})
-  public height?: string;
+  @IsNumber()
+  @ApiProperty({type: Number})
+  public height?: number;
 
   //Description
   @IsOptional()
   @IsString()
   @ApiProperty({type: String})
   public description?: string;
-}
-
-//Personal ID
-export class UpdateUserResponce extends UpdateUserDto {
-  @ApiProperty({type: Number})
-  public id: number;
 }
