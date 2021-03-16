@@ -9,15 +9,15 @@ import {
 } from '@nestjs/common';
 import { UpdateUserDto } from './dto/updateUser.dto';
 import { UserService } from './user.service';
+import { CreateUserDto, CreateUserResponse } from "./dto/createUser.dto";
 
 @Controller('user')
 export class UserController {
   constructor(private userService: UserService) {}
 
   @Get()
-  getAll() {
-    //return 'getAll'
-    //return this.userService.getAll(); //-->> String returner
+  index(): Promise<CreateUserResponse[]> {
+    return this.userService.getAll();
   }
 
 
@@ -26,11 +26,11 @@ export class UserController {
     return 'getOne ' + id;
   }
 
-  @Post()
-  //create(@Body() createUserDto: CreateUserDto) {
-    //return `Title: ${createUserDto.title} Age: ${createUserDto.age} Description: ${createUserDto.description} Height: ${createUserDto.height}` -->> String returner
-    //return this.userService.create(createUserDto);
-  //}
+  @Post('create')
+  async create(@Body() data: CreateUserDto): Promise<CreateUserResponse> {
+    //return `Title: ${createUserDto.title} Age: ${createUserDto.age} Description: ${createUserDto.description} Height: ${createUserDto.height}` //-->> String returner
+    return this.userService.createUser(data);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

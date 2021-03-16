@@ -19,4 +19,9 @@ export class UserService {
     return newUser.toResponseObj();
   }
 
+  public async getAll(): Promise<CreateUserResponse[]> {
+    return await this.userRepository.find();
+  }
+
+
 }
