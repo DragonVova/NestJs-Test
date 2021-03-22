@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
+import { EnterpriceModule } from "./modules/enterprice/enterprice.module";
 
 @Module({
   imports: [
@@ -18,6 +19,7 @@ import { UserModule } from './modules/user/user.module';
       logging: process.env.NODE_ENV === 'development',
     }),
     UserModule,
+    EnterpriceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
